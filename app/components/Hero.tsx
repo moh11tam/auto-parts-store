@@ -1,8 +1,7 @@
-"import client"; // تأكد من وجود هذه السطر إذا كنت تستخدم Next.js App Router ويتطلب مكون تفاعلي
+"use client";
 import React, { useState, useEffect } from "react";
 
 export default function Hero() {
-  // كود تأثير الكتابة البطيئة للنص المتحرك
   const fullText = "قوة سيارتك تبدأ من القطعة الصحيحة";
   const [displayedText, setDisplayedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -14,7 +13,6 @@ export default function Hero() {
       if (!isDeleting) {
         setDisplayedText(fullText.substring(0, displayedText.length + 1));
         if (displayedText === fullText) {
-          // انتظر قليلاً بعد اكتمال الجملة قبل البدء بالمسح أو التكرار
           setTimeout(() => setIsDeleting(true), 2000);
           setTypingSpeed(100);
         }
@@ -33,29 +31,17 @@ export default function Hero() {
   }, [displayedText, isDeleting, typingSpeed]);
 
   return (
-    <section className="relative w-full h-[85vh] flex items-center justify-center overflow-hidden bg-gray-900">
-      {/* 1. طبقة الفيديو في الخلفية مع التأكد من شروط التشغيل التلقائي */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0 opacity-70"
-      >
-        <source src="/hero-bg.mp4" type="video/mp4" />
-        متصفحك لا يدعم تشغيل الفيديو.
-      </video>
+    <section className="relative w-full h-[80vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-red-950 text-white">
+      {/* تأثير إضافي خفيف في الخلفية */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-red-600/10 via-transparent to-transparent pointer-events-none"></div>
 
-      {/* 2. طبقة تغشية سوداء شفافة (Overlay) لإبراز النصوص */}
-      <div className="absolute inset-0 bg-black/50 z-10"></div>
-
-      {/* 3. المحتوى وعنوان الترحيب المتحرك */}
-      <div className="relative z-20 text-center px-4 max-w-4xl mx-auto">
-        <h1 className="text-3xl md:text-6xl font-extrabold text-white tracking-wide drop-shadow-lg mb-6 min-h-[90px] md:min-h-[120px] flex items-center justify-center">
+      {/* المحتوى الرئيسي */}
+      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+        <h1 className="text-3xl md:text-6xl font-extrabold tracking-wide drop-shadow-lg mb-6 min-h-[90px] md:min-h-[120px] flex items-center justify-center">
           <span>{displayedText}</span>
           <span className="animate-pulse text-red-500 ml-1">|</span>
         </h1>
-        <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto drop-shadow-md">
+        <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto drop-shadow-md">
           اكتشف أفضل قطع الغيار الأصلية والمضمونة لجميع أنواع السيارات بأفضل الأسعار.
         </p>
 
