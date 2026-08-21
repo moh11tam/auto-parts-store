@@ -1,5 +1,5 @@
 import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
+import   Hero  from './components/Hero';
 import { TrustBar } from './components/TrustBar';
 import { SearchSection } from './components/SearchSection';
 import { CarFilter } from './components/CarFilter';
